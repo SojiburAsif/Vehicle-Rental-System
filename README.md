@@ -85,7 +85,7 @@ This backend system covers full workflow of a rental service:
 📦 vehicle-rental-system
 ├── 📁 src
 │ ├── app.ts
-│ ├── server.ts (if exists)
+│ ├── server.ts (optional)
 │ │
 │ ├── 📁 config
 │ │ ├── config.ts
