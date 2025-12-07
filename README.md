@@ -80,52 +80,6 @@ This backend system covers full workflow of a rental service:
 
 ---
 
-## 📁 Project Structure
-
-📦 vehicle-rental-system
-├── 📁 src
-│ ├── app.ts
-│ ├── server.ts (optional)
-│ │
-│ ├── 📁 config
-│ │ ├── config.ts
-│ │ └── db.ts
-│ │
-│ ├── 📁 middleware
-│ │ └── logger.ts
-│ │
-│ ├── 📁 modules
-│ │ ├── 📁 auth
-│ │ │ ├── auth.controller.ts
-│ │ │ ├── auth.service.ts
-│ │ │ └── auth.route.ts
-│ │ │
-│ │ ├── 📁 users
-│ │ │ ├── user.controller.ts
-│ │ │ ├── user.service.ts
-│ │ │ └── user.route.ts
-│ │ │
-│ │ ├── 📁 vehicles
-│ │ │ ├── vehicles.controller.ts
-│ │ │ ├── vehicles.service.ts
-│ │ │ └── vehicles.route.ts
-│ │ │
-│ │ └── 📁 bookings
-│ │ ├── booking.controller.ts
-│ │ ├── booking.service.ts
-│ │ └── booking.route.ts
-│ │
-│ ├── types.d.ts (if needed)
-│ └── utils.ts (if needed)
-│
-├── .env.example
-├── tsconfig.json
-├── package.json
-├── README.md
-└── vercel.json (if deployed)
-
-
-
 
 ## 📌 API Endpoints Summary
 
