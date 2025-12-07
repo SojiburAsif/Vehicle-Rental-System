@@ -168,9 +168,5 @@ Your implementation follows a **modular pattern** with clear separation of conce
 
 ---
 
-## ⚠️ Business Logic Notes
-
-- **Booking Price Calculation**  
-
 
 
