@@ -1,36 +1,55 @@
-import { NextFunction, Request, Response } from "express"
+import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import config from "../config";
-
 
 const auth = (...roles: string[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
         try {
-            const token = req.headers.authorization;
-            console.log({ authTokken: token });
-            if (!token) {
-                return res.status(500).json({ message: "Not valid User" })
+            const authHeader = req.headers.authorization;
+
+            if (!authHeader) {
+                return res.status(401).json({
+                    success: false,
+                    message: "No token provided!",
+                });
             }
+
+            // Split "Bearer <token>"
+            const token = authHeader.split(" ")[1];
+
+            if (!token) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Invalid token format!",
+                });
+            }
+
             const decoded = jwt.verify(token, config.jwttoken as string) as JwtPayload & {
                 id: number;
                 role: string;
                 name: string;
                 email: string;
             };
+
             req.user = decoded;
-            //["admin"]
-            if (roles.length && !roles.includes(decoded.role as string)) {
-                return res.status(500).json({
-                    error: "unauthorized!!!",
+
+            // Check role
+            if (roles.length && !roles.includes(decoded.role)) {
+                return res.status(403).json({
+                    success: false,
+                    message: "Unauthorized access!",
                 });
             }
-            next()
+
+            next();
+
         } catch (err: any) {
-            res.status(500).json({
-                succes: false,
-                message: err.message
-            })
+            res.status(401).json({
+                success: false,
+                message: "Invalid or expired token!",
+            });
         }
-    }
-}
-export default auth
+    };
+};
+
+export default auth;
